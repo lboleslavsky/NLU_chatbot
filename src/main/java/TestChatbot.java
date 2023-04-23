@@ -29,7 +29,7 @@ public class TestChatbot {
             "models/en-pos-maxent.bin",
             "models/en-token.bin",
             "models/en-lemmatizer.bin",
-            "models/categmodel.txt"
+            "models/intent-questions.txt"
         }, new FileLoader());       
         
        
@@ -38,7 +38,7 @@ public class TestChatbot {
             chBot.init(new DbAdapter(DriverManager.getConnection("jdbc:sqlite:chb.db")));
             
             Trainer trainer = new Trainer();
-            trainer.loadAndTrainByCategory(chBot,"models/trainset-category.txt" , new FileLoader());
+            trainer.loadAndTrainByCategory(chBot,"models/intent-answers.txt" , new FileLoader());
             
             System.out.println(":");
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
