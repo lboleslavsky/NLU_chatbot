@@ -37,10 +37,9 @@ public class TestChatbot {
             CHBot chBot = new CHBot(documentAnalysis);
             chBot.init(new DbAdapter(DriverManager.getConnection("jdbc:sqlite:chb.db")));
             
-            Trainer trainer = new Trainer();
-            trainer.loadAndTrainByCategory(chBot,"models/intent-answers.txt" , new FileLoader());
+            Trainer.loadAndTrainByCategory(chBot,"models/intent-answers.txt" , new FileLoader());
             
-            System.out.println(":");
+            System.out.println(">");
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String s;
             while((s=br.readLine())!=null){

@@ -1,6 +1,5 @@
 package com.lboleslavsky.nluchatbot.storage;
 
-import com.lboleslavsky.nluchatbot.storage.Statement;
 import java.util.List;
 
 /**

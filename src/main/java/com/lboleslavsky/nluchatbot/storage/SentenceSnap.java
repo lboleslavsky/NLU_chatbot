@@ -9,9 +9,9 @@ import java.util.ArrayList;
  * @author lbolelsavsky
  */
 public class SentenceSnap {
-    private List<String> tokens = new ArrayList<>();
-    private List<String> posTags = new ArrayList<>();
-    private List<String> lemmas = new ArrayList<>() ;
+    private final List<String> tokens = new ArrayList<>();
+    private final List<String> posTags = new ArrayList<>();
+    private final List<String> lemmas = new ArrayList<>() ;
 
     /**
      * @return the tokens

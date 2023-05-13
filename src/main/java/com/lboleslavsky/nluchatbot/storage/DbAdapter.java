@@ -5,8 +5,6 @@
  */
 package com.lboleslavsky.nluchatbot.storage;
 
-import com.lboleslavsky.nluchatbot.storage.IDbAdapter;
-import com.lboleslavsky.nluchatbot.storage.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,12 +17,13 @@ import java.util.List;
  * @author lboleslavsky
  */
 public class DbAdapter implements IDbAdapter{
-    private Connection connection;
+    private final Connection connection;
     
     public DbAdapter(Connection connection){
         this.connection=connection;
     }
     
+    @Override
     public void add(Statement statement) throws Exception{
         PreparedStatement ps = this.connection.prepareStatement("INSERT INTO chbot(textKey,text,referenceToKey) VALUES (?,?,?);");
         ps.setString(1, statement.getTextKey());
@@ -33,11 +32,12 @@ public class DbAdapter implements IDbAdapter{
         ps.execute();
     }
     
+    @Override
     public List<String> selectAnswers(String referenceToKey) throws Exception{
         PreparedStatement ps = this.connection.prepareStatement("SELECT * FROM chbot WHERE referenceToKey LIKE ?");
         ps.setString(1, referenceToKey);
         
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
             list.add(rs.getString(2));
@@ -45,6 +45,7 @@ public class DbAdapter implements IDbAdapter{
         return list;        
     }
     
+    @Override
     public void loadAnswers(List<Statement> objects) throws Exception{
         PreparedStatement ps = this.connection.prepareStatement("SELECT * FROM chbot");
                
@@ -54,6 +55,7 @@ public class DbAdapter implements IDbAdapter{
         }          
     }
     
+    @Override
     public void initSchema() throws Exception{
         this.connection.createStatement().execute("CREATE TABLE chbot(textKey,text,referenceToKey);");
     }

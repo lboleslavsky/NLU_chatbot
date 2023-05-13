@@ -31,7 +31,7 @@ public class Storage {
     public void addByCategory(String key, String text){
         key = key.trim().toLowerCase();
         
-        Logger.log("putting: "+ key +", " + text);
+        //Logger.log("putting: "+ key +", " + text);
         
         if(answers.containsKey(key)){
             answers.put(key, answers.get(key)+";;"+text);
@@ -88,7 +88,7 @@ public class Storage {
         List<String> answers = new ArrayList<>();
         float x;
         float max=-1;
-        int maxIndex=-1;
+        //int maxIndex=-1;
         String referenceToKey; 
         
         for(int i=0;i<objects.size();i++){
@@ -111,7 +111,7 @@ public class Storage {
             
             if (x>max){
                 max=x;
-                maxIndex=i;
+                //maxIndex=i;
             }     
         }
         
@@ -120,6 +120,5 @@ public class Storage {
     
     public void initSchema() throws Exception{
         dbAdapter.initSchema();
-    }            int maxIndex=-1;
-
+    }
 }

@@ -33,8 +33,6 @@ public class Trainer {
         chBot.getStorage().initSchema();
         
         String key;
-        String referenceToKey;
-        String previousText;
         String previousKey="";
         
         for(String line : sentences){
@@ -42,7 +40,6 @@ public class Trainer {
             
             chBot.getStorage().add(new Statement(key, line, previousKey));
             
-            previousText = line;
             previousKey=key;
         }
     }
@@ -61,13 +58,11 @@ public class Trainer {
         chBot.getStorage().initSchema();
         
         String key;
-        String referenceToKey;
-        String previousText;
         String previousKey="";
         
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileLoader.load(fileName)))) {
                                    
-                String line=null;
+                String line;
                 while((line = bufferedReader.readLine())!=null){
                     
                     line = line.replace("-","");
@@ -75,7 +70,6 @@ public class Trainer {
                     key = chBot.getTextKey(line);
                     chBot.getStorage().add(new Statement(key, line, previousKey));
                     
-                    previousText = line;
                     previousKey=key;
                 }           
             }
@@ -95,8 +89,8 @@ public class Trainer {
        
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileLoader.load(fileName)))) {
                                    
-                String line=null;
-                String[] tokens = null;
+                String line;
+                String[] tokens;
                 while((line = bufferedReader.readLine())!=null){
                     tokens = line.split("\t");
                     
